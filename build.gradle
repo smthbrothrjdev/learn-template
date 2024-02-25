@@ -21,7 +21,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 task installFrontend(type: Exec){
-	workingDir('frontend')
+	workingDir 'frontend'
 	commandLine 'yarn', 'install'
 }
 task buildFrontend(type: Exec) {
@@ -30,9 +30,12 @@ task buildFrontend(type: Exec) {
 	commandLine 'yarn', 'build'
 }
 
-
+task cleanStatic(type: Delete) {
+	delete 'src/main/resources/static'
+}
 task copyFrontendAssets(type: Copy) {
 	dependsOn buildFrontend
+	dependsOn cleanStatic
 	from 'frontend/dist'
 	into './src/main/resources/static'
 }
