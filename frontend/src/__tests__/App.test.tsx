@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react'
-import {  userEvent } from '@testing-library/user-event'
-import App from "../App.tsx";
+import App from "../App";
+import {it, describe} from 'vitest'
 
 
 describe('when the home screen loads',()=>{
